@@ -67,12 +67,12 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign(
       {
         userId: user.id,
-        email: user.email,
+        isAdmin: user.isAdmin,
       },
       secret,
       { expiresIn: '1d' } //options > expries in one day
     );
-    res.status(200).send({ email: user.email, token });
+    res.status(200).send({ email: user.email, token: token });
   } else {
     return res.status(400).send('Email or password is incorrect');
   }
