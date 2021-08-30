@@ -67,7 +67,7 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign(
       {
         userId: user.id,
-        isAdmin: user.isAdmin,
+        email: user.email,
       },
       secret,
       { expiresIn: '1d' } //options > expries in one day
