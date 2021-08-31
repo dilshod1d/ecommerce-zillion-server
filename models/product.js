@@ -25,6 +25,10 @@ const productSchema = mongoose.Schema({
     type: String,
     default: '',
   },
+  price: {
+    type: Number,
+    default: 0,
+  },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
@@ -34,7 +38,7 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
     min: 0,
-    max: 1000,
+    max: 255,
   },
   rating: {
     type: Number,
