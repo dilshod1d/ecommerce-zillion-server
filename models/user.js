@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
     default: '',
   },
   zip: {
-    type: String,
+    type: Number,
     default: '',
   },
   city: {
