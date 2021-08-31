@@ -130,8 +130,8 @@ router.put('/:productId', uploadOptions.single('image'), async (req, res) => {
 });
 
 // Delete product
-router.delete('/:productId', (req, res) => {
-  Product.findByIdAndRemove(req.params.productId)
+router.delete('/:id', (req, res) => {
+  Product.findByIdAndRemove(req.params.id)
     .then((product) => {
       if (product) {
         return res
