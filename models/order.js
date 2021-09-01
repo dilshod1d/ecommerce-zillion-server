@@ -19,7 +19,7 @@ const orderSchema = mongoose.Schema({
     required: true,
   },
   zip: {
-    type: String,
+    type: Number,
     required: true,
   },
   country: {
