@@ -19,10 +19,14 @@ const orderSchema = mongoose.Schema({
     required: true,
   },
   zip: {
-    type: Number,
+    type: String,
     required: true,
   },
   country: {
+    type: String,
+    required: true,
+  },
+  phone: {
     type: String,
     required: true,
   },
