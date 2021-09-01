@@ -26,14 +26,16 @@ router.get('/:id', async (req, res) => {
   res.send(order);
 });
 
-router.post('/', async function (req, res) {
+router.post('/', async (req, res) => {
   const orderItemsIds = Promise.all(
     req.body.orderItems.map(async (orderItem) => {
       let newOrderItem = new OrderItem({
         quantity: orderItem.quantity,
         product: orderItem.product,
       });
+
       newOrderItem = await newOrderItem.save();
+
       return newOrderItem._id;
     })
   );
@@ -45,11 +47,13 @@ router.post('/', async function (req, res) {
         'product',
         'price'
       );
-      const totalPrice = orderItem.product.price * orderItem.product.quantity;
+      const totalPrice = orderItem.product.price * orderItem.quantity;
       return totalPrice;
     })
   );
-  const totalPrice = totalPrices.reduce((sum, price) => sum + price, 0);
+
+  const totalPrice = totalPrices.reduce((a, b) => a + b, 0);
+
   let order = new Order({
     orderItems: orderItemsIdsResolved,
     shippingAddress1: req.body.shippingAddress1,
@@ -63,9 +67,9 @@ router.post('/', async function (req, res) {
     user: req.body.user,
   });
   order = await order.save();
-  if (!order) {
-    return res.status(404).send('Order not created');
-  }
+
+  if (!order) return res.status(400).send('the order cannot be created!');
+
   res.send(order);
 });
 
